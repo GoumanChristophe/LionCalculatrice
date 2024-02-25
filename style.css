@@ -1,0 +1,114 @@
+/* Applique un style global pour supprimer les marges et les paddings par défaut, et utilise box-sizing pour inclure padding et border dans la largeur/hauteur d'un élément */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Style du corps de la page */
+body {
+    display: flex; /* Utilise Flexbox pour le positionnement */
+    max-width: 100vw; /* Largeur maximale de 100% de la largeur de la fenêtre */
+    height: 100vh; /* Hauteur de 100% de la hauteur de la fenêtre */
+    justify-content: center; /* Centre les éléments horizontalement */
+    align-items: center; /* Centre les éléments verticalement */
+    font-family: sans-serif; /* Utilise une police sans serif */
+    background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%); /* Dégradé de fond */
+}
+
+/* Style du titre de la calculatrice */
+.titre {
+    align-items: center; /* Centre les éléments verticalement */
+    display: flex; /* Utilise Flexbox pour le positionnement */
+    justify-content: center; /* Centre les éléments horizontalement */
+    font-size: 55px; /* Taille de la police */
+    color: white; /* Couleur du texte */
+    text-shadow: 0 5px black; /* Ombre du texte */
+}
+
+/* Style du conteneur de la calculatrice */
+.calculatrice {
+    background-color: rgb(131, 136, 131); /* Couleur de fond */
+    display: flex; /* Utilise Flexbox pour le positionnement */
+    flex-direction: column; /* Organise les éléments en colonne */
+    padding: 15px; /* Padding autour du contenu */
+    border-radius: 5px; /* Bordures arrondies */
+    box-shadow: 0 5px black; /* Ombre portée */
+}
+
+/* Style de l'écran de la calculatrice */
+.ecran {
+    width: 100%; /* Largeur de 100% */
+    height: 100px; /* Hauteur fixe */
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Dégradé de fond */
+    margin-bottom: 10px; /* Marge en bas */
+    border-radius: 5px; /* Bordures arrondies */
+    display: flex; /* Utilise Flexbox pour le positionnement */
+    justify-content: flex-end; /* Alignement à droite */
+    align-content: flex-end; /* Alignement en bas */
+    font-size: 70px; /* Taille de la police */
+}
+
+/* Style du conteneur des touches */
+.touches {
+    display: grid; /* Utilise Grid pour le positionnement */
+    grid-template-columns: 1fr 2fr 2fr 2fr 2fr; /* Définit les colonnes du grid */
+    grid-template-rows: 1fr 2fr 2fr 2fr 2fr 1fr; /* Définit les lignes du grid */
+    width: 100%; /* Largeur de 100% */
+    row-gap: 15px; /* Espacement entre les lignes */
+    column-gap: 20px; /* Espacement entre les colonnes */
+    align-content: space-between; /* Répartit l'espace verticalement */
+    justify-content: center; /* Centre horizontalement */
+    margin: auto; /* Centre le grid dans son conteneur */
+    padding: 30px; /* Padding autour du grid */
+}
+
+/* Style des boutons */
+.button {
+    display: flex; /* Utilise Flexbox pour le positionnement */
+    justify-content: center; /* Centre les éléments horizontalement */
+    align-items: center; /* Centre les éléments verticalement */
+    border-radius: 10px; /* Bordures arrondies */
+    background-color: rgb(255, 255, 251); /* Couleur de fond */
+    box-shadow: 0 5px black; /* Ombre portée */
+    font-size: 35px; /* Taille de la police */
+    width: 100%; /* Utilise toute la largeur disponible */
+    height: 100%; /* Utilise toute la hauteur disponible */
+    padding: auto; /* Padding automatique */
+    cursor: pointer; /* Change le curseur en pointeur */
+}
+
+/* Style spécifique pour le bouton d'addition pour qu'il s'étende sur deux lignes */
+#addition {
+    grid-column-start: 5; /* Commence à la cinquième colonne */
+    grid-column-end: 5; /* Termine à la cinquième colonne */
+    grid-row-start: 4; /* Commence à la quatrième ligne */
+    grid-row-end: 6; /* Termine à la sixième ligne */
+}
+
+/* Style appliqué lorsqu'un bouton est activé (clic) */
+button:active {
+    box-shadow: 0 1px tomato; /* Ombre portée plus petite */
+    transform: translateY(2px); /* Déplace légèrement le bouton vers le bas */
+}
+
+/* Style appliqué au survol d'un bouton */
+button:hover {
+    background-color: rgb(113, 113, 176); /* Change la couleur de fond */
+}
+
+/* Styles spécifiques pour les boutons avec certaines fonctions, changent la couleur de fond, la graisse de la police, et la couleur du texte */
+button[data-key="Delete"], button[data-key="Escape"], button[data-key="Enter"], button[data-key="Digit1"], button[data-key="Digit2"], button[data-key="Digit3"], button[data-key="Backquote"] {
+    background-color: #e12e2e; /* Couleur de fond pour Delete et Escape */
+    font-weight: bold; /* Rend le texte en gras */
+    color: white; /* Couleur du texte en blanc */
+}
+
+/* Ajuste la couleur de fond pour les boutons Enter et les boutons numériques pour les distinguer */
+button[data-key="Enter"] {
+    background-color: rgb(93, 211, 93); /* Couleur de fond pour Enter */
+}
+
+button[data-key="Digit1"], button[data-key="Digit2"], button[data-key="Digit3"], button[data-key="Backquote"] {
+    background-color: #969292; /* Couleur de fond pour les boutons numériques et Backquote */
+}
