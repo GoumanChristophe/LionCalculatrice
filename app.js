@@ -33,6 +33,22 @@ const calculer = (valeur) => {
                 const calcul = eval(ecran.textContent); // Utilise 'eval' pour calculer l'expression dans l'écran
                 ecran.textContent = calcul; // Affiche le résultat du calcul sur l'écran
                 break;
+            case 'Quote':
+                try {
+                    let contenuEcran = ecran.textContent;
+                    // Vérifie si le contenu actuel de l'écran est une opération nécessitant un pourcentage
+                    if (contenuEcran.includes('+') || contenuEcran.includes('-') || contenuEcran.includes('*') || contenuEcran.includes('/')) {
+                        // implentation du pourcentage a faire ici..
+                        alert('Le calcul de pourcentage dans une opération n\'est pas encore implémenté.');
+                    } else {
+                        // Pour un cas simple où le pourcentage est appliqué à un seul nombre
+                        const resultat = eval(contenuEcran.slice(0, -1)) / 100;
+                        ecran.textContent = resultat.toString();
+                    }
+                } catch (e) {
+                    alert('Erreur de calcul du pourcentage');
+                }
+                break;
             default: // Pour toutes les autres touches, ajoute le symbole ou le nombre à l'écran
                 const index = tableau.indexOf(valeur); // Trouve l'index de la valeur dans le tableau
                 const touche = touches[index]; // Récupère l'élément du DOM correspondant à cette touche
