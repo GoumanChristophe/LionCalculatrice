@@ -6,6 +6,8 @@ const touches = [...document.querySelectorAll('.button')];
 const tableau = touches.map(touche => touche.dataset.key);
 // Sélectionne l'élément du DOM qui agit comme l'écran de la calculatrice
 const ecran = document.querySelector('.ecran');
+// Crée un tableau pour la fonction mémoire 
+liste = [] ;
 
 // Écoute les événements de frappe au clavier
 document.addEventListener('keydown', (e) => {
@@ -23,16 +25,50 @@ document.addEventListener('click', (e) => {
 const calculer = (valeur) => {
     if (tableau.includes(valeur)){ // Vérifie si la valeur est dans le tableau des touches autorisées
         switch (valeur) {
+
             case 'Delete': // Si la touche est 'Delete', efface l'écran
+            case 'Escape' : // Si la touche est 'Escape', efface également l'écran
                 ecran.textContent = "";
                 break;
-            case 'Escape': // Si la touche est 'Escape', efface également l'écran
-                ecran.textContent = "";
-                break;
-            case 'Enter': // Si la touche est 'Enter', effectue le calcul
+
+            case 'Enter': // Si la touche est Total, effectue le calcul
                 const calcul = eval(ecran.textContent); // Utilise 'eval' pour calculer l'expression dans l'écran
                 ecran.textContent = calcul; // Affiche le résultat du calcul sur l'écran
                 break;
+
+            case 'Digit2': // Si la touche est M+
+                let memory = ecran.textContent.toString () ; // 
+                liste.push(memory);
+                ecran.textContent = "";
+                break;
+
+            case 'Digit3': // Si la touche est MR, affiche le résultat en mémoire
+                 const somme = liste.reduce((acc, curr) => acc + Number(curr), 0);
+                // Affiche le résultat dans l'élément HTML dédié
+                ecran.textContent = somme.toString(); // Convertit le résultat en chaîne pour l'affichage
+                console.log(somme); // Affiche également le résultat dans la console
+                liste.length = 0; // Réinitialise la liste pour de futures opérations
+                break;
+            
+            case 'Backquote': // Si la touche est Mc, efface le resultat en mémoire
+            liste.length = 0;// Réinitialise la liste pour de futures opérations
+                break;
+
+            case 'Digit1': // Si la touche est M-, Elle soustraie le nombre au montant de la mémoire
+                const negative = ecran.textContent
+                const sommeneg = liste.reduce((acc, curr) => acc + Number(curr), 0);
+                // Affiche le résultat dans l'élément HTML dédié
+                ecran.textContent = sommeneg.toString() - negative; // Convertit le résultat en chaîne pour l'affichage
+                //console.log(sommeneg); // Affiche également le résultat dans la console
+                liste.length = 0; // Réinitialise la liste pour de futures opérations
+                break;
+
+            case 'Tab': // Si la touche est +/-, Elle change le symbole du chiffre
+                let currentValue = Number(ecran.textContent); // Convertit le contenu de l'écran en nombre
+                currentValue = currentValue * -1; // Change le signe du nombre
+                ecran.textContent = currentValue.toString(); // Convertit le résultat en chaîne pour l'affichage
+                break;
+
             case 'Quote':
                 try {
                     let contenuEcran = ecran.textContent;
